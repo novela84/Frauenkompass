@@ -330,27 +330,33 @@
   }
 
   .subgroup-chips{
-    display:grid; grid-template-columns:1fr; gap:10px; margin:18px 0 0;
+    display:flex; flex-wrap:nowrap; gap:10px; margin:18px 0 0;
     width:100%; box-sizing:border-box;
+    overflow-x:auto; overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    scroll-padding-left:2px;
+    padding-bottom:8px;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,0.35) transparent;
+    overscroll-behavior-x:contain;
   }
+  .subgroup-chips::-webkit-scrollbar{height:6px;}
+  .subgroup-chips::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.35); border-radius:6px;}
+  .subgroup-chips::-webkit-scrollbar-track{background:transparent;}
   .subgroup-chip{
     font-family:var(--sans); font-size:0.88rem; padding:14px 16px; border-radius:10px;
     border:1px solid rgba(255,255,255,0.35); background:rgba(255,255,255,0.08); color:#fff;
     cursor:pointer; transition:background 0.2s, border-color 0.2s;
     display:flex; align-items:center; justify-content:center; gap:8px;
-    text-align:center; line-height:1.3; width:100%; box-sizing:border-box;
+    text-align:center; line-height:1.3; box-sizing:border-box;
+    flex:0 0 auto; white-space:nowrap; scroll-snap-align:start;
   }
   .subgroup-chip:hover{background:rgba(255,255,255,0.18);}
   .subgroup-chip.active{background:var(--gold); border-color:var(--gold); color:var(--plum); font-weight:600;}
   .subgroup-chip.frida{border-color:#d9ac6c;}
-  @media (min-width:640px){
-    .subgroup-chips{grid-template-columns:repeat(2, 1fr);}
-    .subgroup-chip.chip-all{grid-column:1 / -1;}
-  }
-  @media (min-width:960px){
-    .subgroup-chips{grid-template-columns:repeat(3, 1fr);}
-    .subgroup-chip.chip-all{grid-column:1 / -1;}
-  }
+  .subgroup-chips.dragging{cursor:grabbing; user-select:none;}
+  .subgroup-chips.dragging .subgroup-chip{pointer-events:none;}
   .subgroup-heading{
     font-family:var(--serif); font-weight:600; color:#fff; font-size:1.05rem;
     margin:26px 0 10px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.15);
@@ -1277,6 +1283,43 @@
     chipsBox.innerHTML = defs.map(d =>
       `<button type="button" class="subgroup-chip${d.cls ? ' '+d.cls : ''}${activeSubgroup === d.key ? ' active' : ''}" onclick="setSubgroup('${d.key}')">${d.label}</button>`
     ).join('');
+    enhanceChipScroll(chipsBox);
+  }
+
+  // Desktop-Komfort: Mausrad = seitwärts scrollen, Ziehen mit Maustaste = wischen.
+  // Wird pro Element nur einmal aktiviert (Guard über dataset).
+  function enhanceChipScroll(box){
+    if(box.dataset.scrollEnhanced) return;
+    box.dataset.scrollEnhanced = '1';
+
+    // Vertikales Mausrad in horizontales Scrollen umwandeln
+    box.addEventListener('wheel', function(e){
+      if(e.deltaY === 0) return;
+      if(box.scrollWidth <= box.clientWidth) return; // nichts zu scrollen
+      box.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }, {passive:false});
+
+    // Ziehen mit gedrückter Maustaste (Click-and-drag)
+    let down = false, startX = 0, startScroll = 0, moved = false;
+    box.addEventListener('mousedown', function(e){
+      down = true; moved = false;
+      startX = e.pageX; startScroll = box.scrollLeft;
+    });
+    window.addEventListener('mousemove', function(e){
+      if(!down) return;
+      const dx = e.pageX - startX;
+      if(Math.abs(dx) > 3){ moved = true; box.classList.add('dragging'); }
+      box.scrollLeft = startScroll - dx;
+    });
+    window.addEventListener('mouseup', function(){
+      down = false;
+      box.classList.remove('dragging');
+    });
+    // Nach einem echten Zieh-Vorgang den Klick auf den Chip unterdrücken
+    box.addEventListener('click', function(e){
+      if(moved){ e.preventDefault(); e.stopPropagation(); moved = false; }
+    }, true);
   }
 
   function setSubgroup(key){
