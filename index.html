@@ -499,6 +499,41 @@
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important; scroll-behavior:auto !important;}
   }
+
+  /* ---------- Cookie banner ---------- */
+  .cookie-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(42,15,40,0.45);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .cookie-overlay[hidden]{display:none;}
+  .cookie-box{
+    background:var(--cream);
+    border-radius:14px;
+    max-width:460px;
+    width:100%;
+    padding:32px 30px 26px;
+    box-shadow:0 20px 60px rgba(42,15,40,0.35);
+    text-align:center;
+  }
+  .cookie-box h3{
+    font-family:var(--serif); font-weight:600; color:var(--plum);
+    font-size:1.3rem; margin:0 0 12px;
+  }
+  .cookie-box p{
+    font-size:0.9rem; line-height:1.6; color:var(--ink); margin:0 0 22px;
+  }
+  .cookie-box p a{ color:var(--plum-700); text-decoration:underline; }
+  .cookie-actions{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .cookie-btn{
+    font-family:var(--sans); font-size:0.88rem; font-weight:500;
+    padding:10px 22px; border-radius:30px; cursor:pointer; border:1px solid transparent;
+  }
+  .cookie-btn.primary{ background:var(--plum); color:var(--cream); }
+  .cookie-btn.primary:hover{ background:var(--plum-700); }
+  .cookie-btn.secondary{ background:transparent; color:var(--plum-700); border-color:var(--line); }
+  .cookie-btn.secondary:hover{ border-color:var(--gold); color:var(--plum); }
 </style>
 </head>
 <body>
@@ -781,7 +816,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Frauenkompass Tirol · Diese Seite befindet sich im Aufbau — Kontaktdaten bitte vor Verwendung prüfen. · <a href="impressum.html">Impressum</a></span>
+    <span>© 2026 Frauenkompass Tirol · Diese Seite befindet sich im Aufbau — Kontaktdaten bitte vor Verwendung prüfen. · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
     <span>Ein Projekt für Frauen in Tirol.</span>
   </div>
 </footer>
@@ -1355,6 +1390,35 @@
       box.appendChild(more);
     }
   }
+</script>
+
+<div class="cookie-overlay" id="cookieOverlay" hidden>
+  <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookieTitle">
+    <h3 id="cookieTitle">Datenschutz</h3>
+    <p>Diese Website verwendet ausschließlich technisch notwendige Speicherung (z. B. um diese Einwilligung zu merken). Es findet kein Tracking und keine Analyse deines Verhaltens statt. Beim Laden der Seite wird eine Verbindung zu Google Fonts aufgebaut. Details dazu findest du in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="cookie-actions">
+      <button class="cookie-btn primary" id="cookieAccept">Verstanden</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    var KEY = 'fk_cookie_consent';
+    var overlay = document.getElementById('cookieOverlay');
+    if(!overlay) return;
+    try{
+      if(!localStorage.getItem(KEY)){
+        overlay.hidden = false;
+      }
+    }catch(e){
+      overlay.hidden = false;
+    }
+    var btn = document.getElementById('cookieAccept');
+    btn.addEventListener('click', function(){
+      overlay.hidden = true;
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+    });
+  })();
 </script>
 
 </body>
