@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Frauenkompass Tirol — Orientierung &amp; Unterstützung</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Google Fonts werden erst nach Zustimmung im Cookie-Banner via cookie-consent.js nachgeladen -->
 <style>
   :root{
     --plum-950:#2a0f28;
@@ -20,8 +19,8 @@
     --cream-deep:#f3eadf;
     --ink:#3a2b38;
     --line:rgba(61,22,56,0.14);
-    --serif: 'Cormorant Garamond', serif;
-    --sans: 'Jost', sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Jost', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth; overflow-x:hidden;}
@@ -506,34 +505,51 @@
     background:rgba(42,15,40,0.45);
     display:flex; align-items:center; justify-content:center;
     padding:20px;
+    overflow-y:auto;
   }
   .cookie-overlay[hidden]{display:none;}
   .cookie-box{
     background:var(--cream);
     border-radius:14px;
-    max-width:460px;
+    max-width:520px;
     width:100%;
+    min-width:0;
+    margin:auto;
     padding:32px 30px 26px;
     box-shadow:0 20px 60px rgba(42,15,40,0.35);
-    text-align:center;
+    text-align:left;
   }
   .cookie-box h3{
     font-family:var(--serif); font-weight:600; color:var(--plum);
-    font-size:1.3rem; margin:0 0 12px;
+    font-size:1.3rem; margin:0 0 12px; text-align:center;
   }
   .cookie-box p{
-    font-size:0.9rem; line-height:1.6; color:var(--ink); margin:0 0 22px;
+    font-size:0.9rem; line-height:1.6; color:var(--ink); margin:0 0 18px;
   }
   .cookie-box p a{ color:var(--plum-700); text-decoration:underline; }
-  .cookie-actions{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .cookie-categories{
+    display:grid; gap:14px; margin:0 0 22px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:16px 0;
+  }
+  .cookie-cat{ display:flex; align-items:flex-start; gap:10px; cursor:pointer; }
+  .cookie-cat input{ margin-top:3px; flex-shrink:0; width:17px; height:17px; accent-color:var(--plum); }
+  .cookie-cat input:disabled{ cursor:not-allowed; }
+  .cookie-cat strong{ font-size:0.88rem; color:var(--plum); font-weight:600; }
+  .cookie-cat small{ font-size:0.8rem; color:var(--ink); opacity:0.75; line-height:1.5; }
+  .cookie-actions{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
   .cookie-btn{
-    font-family:var(--sans); font-size:0.88rem; font-weight:500;
-    padding:10px 22px; border-radius:30px; cursor:pointer; border:1px solid transparent;
+    font-family:var(--sans); font-size:0.85rem; font-weight:500;
+    padding:10px 18px; border-radius:30px; cursor:pointer; border:1px solid transparent;
   }
   .cookie-btn.primary{ background:var(--plum); color:var(--cream); }
   .cookie-btn.primary:hover{ background:var(--plum-700); }
-  .cookie-btn.secondary{ background:transparent; color:var(--plum-700); border-color:var(--line); }
+  .cookie-btn.secondary{ background:transparent; color:var(--plum-700); border:1px solid var(--line); }
   .cookie-btn.secondary:hover{ border-color:var(--gold); color:var(--plum); }
+  .cookie-settings-link{
+    background:none; border:none; padding:0; margin:0;
+    color:inherit; font:inherit; text-decoration:underline; cursor:pointer;
+  }
 </style>
 </head>
 <body>
@@ -816,7 +832,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Frauenkompass Tirol · Diese Seite befindet sich im Aufbau — Kontaktdaten bitte vor Verwendung prüfen. · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+    <span>© 2026 Frauenkompass Tirol · Diese Seite befindet sich im Aufbau — Kontaktdaten bitte vor Verwendung prüfen. · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <button type="button" class="cookie-settings-link" onclick="window.fkOpenCookieSettings(event)">Cookie-Einstellungen</button></span>
     <span>Ein Projekt für Frauen in Tirol.</span>
   </div>
 </footer>
@@ -1393,33 +1409,29 @@
 </script>
 
 <div class="cookie-overlay" id="cookieOverlay" hidden>
-  <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookieTitle">
-    <h3 id="cookieTitle">Datenschutz</h3>
-    <p>Diese Website verwendet ausschließlich technisch notwendige Speicherung (z. B. um diese Einwilligung zu merken). Es findet kein Tracking und keine Analyse deines Verhaltens statt. Beim Laden der Seite wird eine Verbindung zu Google Fonts aufgebaut. Details dazu findest du in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
+    <h3 id="cookieTitle">Cookie- &amp; Datenschutz-Einstellungen</h3>
+    <p id="cookieDesc">Wir verwenden nur technisch notwendige Speicherung. Optional kannst du der Nachladung von Google Fonts zustimmen. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+
+    <div class="cookie-categories">
+      <label class="cookie-cat">
+        <input type="checkbox" checked disabled aria-readonly="true">
+        <span><strong>Technisch notwendig</strong><br><small>Speichert deine Auswahl in diesem Browser. Kann nicht deaktiviert werden.</small></span>
+      </label>
+      <label class="cookie-cat">
+        <input type="checkbox" id="cookieFontsToggle">
+        <span><strong>Externe Schriftarten (Google Fonts)</strong><br><small>Lädt Schriftarten von Google-Servern nach — dabei wird deine IP-Adresse an Google übermittelt.</small></span>
+      </label>
+    </div>
+
     <div class="cookie-actions">
-      <button class="cookie-btn primary" id="cookieAccept">Verstanden</button>
+      <button type="button" class="cookie-btn secondary" id="cookieRejectAll">Nur notwendige</button>
+      <button type="button" class="cookie-btn secondary" id="cookieSaveSelection">Auswahl speichern</button>
+      <button type="button" class="cookie-btn primary" id="cookieAcceptAll">Alle akzeptieren</button>
     </div>
   </div>
 </div>
-<script>
-  (function(){
-    var KEY = 'fk_cookie_consent';
-    var overlay = document.getElementById('cookieOverlay');
-    if(!overlay) return;
-    try{
-      if(!localStorage.getItem(KEY)){
-        overlay.hidden = false;
-      }
-    }catch(e){
-      overlay.hidden = false;
-    }
-    var btn = document.getElementById('cookieAccept');
-    btn.addEventListener('click', function(){
-      overlay.hidden = true;
-      try{ localStorage.setItem(KEY, '1'); }catch(e){}
-    });
-  })();
-</script>
+<script src="cookie-consent.js" defer></script>
 
 </body>
 </html>

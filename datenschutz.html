@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Datenschutzerklärung — Frauenkompass Tirol</title>
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Google Fonts werden erst nach Zustimmung im Cookie-Banner via cookie-consent.js nachgeladen -->
 <style>
   :root{
     --plum-950:#2a0f28;
@@ -18,8 +17,8 @@
     --cream:#fbf7f2;
     --ink:#3a2b38;
     --line:rgba(61,22,56,0.14);
-    --serif: 'Cormorant Garamond', serif;
-    --sans: 'Jost', sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Jost', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
   }
   *{box-sizing:border-box;}
   body{
@@ -78,6 +77,38 @@
     padding:24px 5vw;
   }
   footer a{color:var(--gold-soft);}
+
+  /* ---------- Cookie banner ---------- */
+  .cookie-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(42,15,40,0.45);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; overflow-y:auto;
+  }
+  .cookie-overlay[hidden]{display:none;}
+  .cookie-box{
+    background:var(--cream); border-radius:14px; max-width:520px; width:100%; min-width:0; margin:auto;
+    padding:32px 30px 26px; box-shadow:0 20px 60px rgba(42,15,40,0.35); text-align:left;
+  }
+  .cookie-box h3{ font-family:var(--serif); font-weight:600; color:var(--plum); font-size:1.3rem; margin:0 0 12px; text-align:center; }
+  .cookie-box p{ font-size:0.9rem; line-height:1.6; color:var(--ink); margin:0 0 18px; }
+  .cookie-box p a{ color:var(--plum-700); text-decoration:underline; }
+  .cookie-categories{
+    display:grid; gap:14px; margin:0 0 22px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0;
+  }
+  .cookie-cat{ display:flex; align-items:flex-start; gap:10px; cursor:pointer; }
+  .cookie-cat input{ margin-top:3px; flex-shrink:0; width:17px; height:17px; accent-color:var(--plum); }
+  .cookie-cat input:disabled{ cursor:not-allowed; }
+  .cookie-cat strong{ font-size:0.88rem; color:var(--plum); font-weight:600; }
+  .cookie-cat small{ font-size:0.8rem; color:var(--ink); opacity:0.75; line-height:1.5; }
+  .cookie-actions{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+  .cookie-btn{ font-family:var(--sans); font-size:0.85rem; font-weight:500; padding:10px 18px; border-radius:30px; cursor:pointer; border:1px solid transparent; }
+  .cookie-btn.primary{ background:var(--plum); color:var(--cream); }
+  .cookie-btn.primary:hover{ background:var(--plum-700); }
+  .cookie-btn.secondary{ background:transparent; color:var(--plum-700); border:1px solid var(--line); }
+  .cookie-btn.secondary:hover{ border-color:var(--gold); color:var(--plum); }
+  .cookie-settings-link{ background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; text-decoration:underline; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -103,11 +134,12 @@
   <p>Diese Website wird über <strong>Cloudflare, Inc.</strong> (Cloudflare Pages) gehostet und ausgeliefert. Beim Aufruf der Website werden automatisch technische Zugriffsdaten (u. a. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, verwendeter Browser) in Server-Logfiles verarbeitet. Dies ist technisch notwendig, um die Website sicher und stabil bereitzustellen (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an einem funktionsfähigen und sicheren Betrieb).</p>
   <p>Cloudflare kann Server auch außerhalb der EU/des EWR betreiben. Für Datenübermittlungen in die USA stützt sich Cloudflare nach eigenen Angaben auf EU-Standardvertragsklauseln. Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Datenschutzerklärung</a>.</p>
 
-  <h2>3. Google Fonts</h2>
-  <p>Diese Website bindet Schriftarten ("Google Fonts") ein, die von Servern der Google Ireland Limited bzw. Google LLC nachgeladen werden. Dabei wird beim Aufruf der Seite eine Verbindung zu Google-Servern aufgebaut, wodurch deine IP-Adresse an Google übermittelt wird. Google setzt hierfür nach eigenen Angaben keine Cookies. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (einheitliche und ansprechende Darstellung der Website). Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
+  <h2>3. Google Fonts (nur mit deiner Einwilligung)</h2>
+  <p>Diese Website kann Schriftarten ("Google Fonts") einbinden, die von Servern der Google Ireland Limited bzw. Google LLC nachgeladen werden. Dabei wird eine Verbindung zu Google-Servern aufgebaut, wodurch deine IP-Adresse an Google übermittelt wird. <strong>Google Fonts werden erst geladen, wenn du dem im Cookie-Banner ausdrücklich zustimmst</strong> ("Alle akzeptieren" oder Auswahl mit aktivierter Option "Externe Schriftarten"). Lehnst du ab oder wählst nur die notwendige Kategorie, wird ausschließlich eine im Browser bzw. Betriebssystem bereits vorhandene Ersatzschrift verwendet — es findet dann keine Verbindung zu Google statt. Rechtsgrundlage bei Zustimmung: Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 165 Abs. 3 TKG 2021 (Österreich) bzw. § 25 Abs. 1 TTDSG (Deutschland). Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
 
-  <h2>4. Cookies und lokale Speicherung</h2>
-  <p>Diese Website setzt keine Tracking- oder Marketing-Cookies und führt keine Analyse deines Nutzungsverhaltens durch. Lediglich deine Einwilligung zum Cookie-Hinweis wird technisch notwendig im lokalen Speicher deines Browsers (<code>localStorage</code>) abgelegt, damit der Hinweis nicht bei jedem Besuch erneut erscheint. Diese Information verbleibt ausschließlich auf deinem Gerät und wird nicht an uns oder Dritte übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO bzw. § 165 Abs. 3 TKG 2021 (technisch unbedingt erforderliche Speicherung).</p>
+  <h2>4. Cookies, lokale Speicherung und Einwilligung</h2>
+  <p>Diese Website setzt keine Tracking- oder Marketing-Cookies und führt keine Analyse deines Nutzungsverhaltens durch. Beim ersten Besuch erscheint ein Cookie-Banner, über das du entscheidest, ob zusätzlich Google Fonts geladen werden dürfen (siehe Punkt 3). Deine Auswahl wird technisch notwendig im lokalen Speicher deines Browsers (<code>localStorage</code>) abgelegt, damit sie nicht bei jedem Besuch erneut abgefragt werden muss. Diese Information verbleibt ausschließlich auf deinem Gerät und wird nicht an uns oder Dritte übermittelt.</p>
+  <p>Rechtsgrundlage für diese technisch notwendige Speicherung ist Art. 6 Abs. 1 lit. f DSGVO i. V. m. § 165 Abs. 3 TKG 2021 (Österreich) bzw. § 25 Abs. 2 Nr. 2 TTDSG (Deutschland), da sie unbedingt erforderlich ist, um deine Auswahl umzusetzen. Für die optionale Kategorie "Google Fonts" ist die Rechtsgrundlage deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, § 165 Abs. 3 TKG 2021 bzw. § 25 Abs. 1 TTDSG. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft über den Link "Cookie-Einstellungen" im Seitenfuß ändern oder widerrufen.</p>
 
   <h2>5. Kontaktaufnahme per E-Mail</h2>
   <p>Wenn du uns per E-Mail kontaktierst, werden deine Angaben (E-Mail-Adresse, Inhalt der Nachricht sowie ggf. weitere freiwillig mitgeteilte Daten) zur Bearbeitung deiner Anfrage verarbeitet und gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (Beantwortung deiner Anfrage) bzw. Art. 6 Abs. 1 lit. b DSGVO, sofern deine Anfrage vorvertragliche Maßnahmen betrifft. Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
@@ -138,8 +170,33 @@
 </main>
 
 <footer>
-  © 2026 Frauenkompass Tirol · <a href="index.html">Zur Startseite</a> · <a href="impressum.html">Impressum</a>
+  © 2026 Frauenkompass Tirol · <a href="index.html">Zur Startseite</a> · <a href="impressum.html">Impressum</a> · <button type="button" class="cookie-settings-link" onclick="window.fkOpenCookieSettings(event)">Cookie-Einstellungen</button>
 </footer>
+
+<div class="cookie-overlay" id="cookieOverlay" hidden>
+  <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
+    <h3 id="cookieTitle">Cookie- &amp; Datenschutz-Einstellungen</h3>
+    <p id="cookieDesc">Wir verwenden nur technisch notwendige Speicherung. Optional kannst du der Nachladung von Google Fonts zustimmen. Details oben auf dieser Seite.</p>
+
+    <div class="cookie-categories">
+      <label class="cookie-cat">
+        <input type="checkbox" checked disabled aria-readonly="true">
+        <span><strong>Technisch notwendig</strong><br><small>Speichert deine Auswahl in diesem Browser. Kann nicht deaktiviert werden.</small></span>
+      </label>
+      <label class="cookie-cat">
+        <input type="checkbox" id="cookieFontsToggle">
+        <span><strong>Externe Schriftarten (Google Fonts)</strong><br><small>Lädt Schriftarten von Google-Servern nach — dabei wird deine IP-Adresse an Google übermittelt.</small></span>
+      </label>
+    </div>
+
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn secondary" id="cookieRejectAll">Nur notwendige</button>
+      <button type="button" class="cookie-btn secondary" id="cookieSaveSelection">Auswahl speichern</button>
+      <button type="button" class="cookie-btn primary" id="cookieAcceptAll">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+<script src="cookie-consent.js" defer></script>
 
 </body>
 </html>
