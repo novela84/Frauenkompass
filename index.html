@@ -597,6 +597,11 @@
   .subpage-back:hover{background:rgba(255,255,255,0.22);}
   .subpage-head h2{margin:0; font-family:var(--serif); font-weight:600; font-size:1.15rem; color:#fff;}
   .subpage-inner{max-width:1280px; width:100%; margin:0 auto; padding:22px 5vw 48px; box-sizing:border-box;}
+  .subpage-banner{
+    border-radius:12px; overflow:hidden; margin:0 0 20px;
+    box-shadow:0 20px 50px -22px rgba(61,22,56,0.35);
+  }
+  .subpage-banner img{width:100%; height:auto; display:block;}
   .subpage-intro{font-size:0.92rem; line-height:1.6; opacity:0.85; margin:0 0 20px; max-width:64ch;}
 
   /* Kategorie-Chips auf der Unterseite: horizontal wischbar */
@@ -1367,6 +1372,12 @@
     if(show){
       renderEventChips();
       renderEventSlider();
+      // Banner der Startseite wiederverwenden (kein doppeltes base64 im HTML)
+      const sbBanner = document.getElementById('subpageBanner');
+      const mainBanner = document.querySelector('.events-banner img');
+      if(sbBanner && mainBanner && !sbBanner.getAttribute('src')){
+        sbBanner.src = mainBanner.getAttribute('src');
+      }
       page.classList.add('open');
       page.setAttribute('aria-hidden', 'false');
       document.body.classList.add('no-scroll');
@@ -1414,7 +1425,12 @@
   (function initEvents(){
     const cnt = document.getElementById('eventsTeaserCount');
     if(cnt) cnt.textContent = events.length + ' Veranstaltungen & Termine';
-    handleEventsRoute();
+    // Routing erst starten, wenn die Unterseiten-Markup im DOM ist
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', handleEventsRoute);
+    } else {
+      handleEventsRoute();
+    }
   })();
 
   function openIdAustriaModal(){
@@ -1655,6 +1671,7 @@
     <h2>Aktuelles &amp; Veranstaltungen</h2>
   </div>
   <div class="subpage-inner">
+    <div class="subpage-banner"><img id="subpageBanner" alt="Aktuelles &amp; Veranstaltungen"></div>
     <p class="subpage-intro">Entdecke Veranstaltungen, Treffen, Workshops, Vorträge, Kultur-, Freizeit- und Businessangebote für Frauen, Mädchen, Familien &amp; Kinder in Wörgl und Umgebung. Wähle eine Kategorie und wische dich durch die Termine.</p>
     <div class="event-chips-scroll" id="eventPageChips"></div>
     <div class="slider-wrap">
