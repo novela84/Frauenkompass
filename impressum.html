@@ -21,6 +21,7 @@
     --sans: 'Jost', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
   }
   *{box-sizing:border-box;}
+  html, body{ max-width:100%; overflow-x:hidden; }
   body{
     margin:0;
     font-family:var(--sans);
@@ -28,14 +29,22 @@
     background:var(--cream);
     -webkit-font-smoothing:antialiased;
   }
-  a{color:var(--plum-700);}
+  h1, h2, p, li{ overflow-wrap:break-word; }
+  a{color:var(--plum-700); overflow-wrap:break-word; word-break:break-word;}
   header.site{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
     padding:14px 5vw;
     background:var(--cream);
     border-bottom:1px solid var(--line);
+  }
+  header.site a{white-space:nowrap;}
+  @media (max-width:430px){
+    .brand-name{font-size:1.1rem;}
+    header.site a{font-size:0.82rem;}
   }
   .brand-name{font-family:var(--serif); font-size:1.35rem; letter-spacing:0.04em; color:var(--plum);}
   header.site a{text-decoration:none; font-size:0.9rem; color:var(--plum-700);}
@@ -113,29 +122,43 @@
 <main>
   <h1>Impressum</h1>
 
-  <h2>Medieninhaberin, Herausgeberin und für den Inhalt verantwortlich</h2>
-  <p>Novela Steinlechner</p>
-  <p>Ladestraße 20d</p>
-  <p>6300 Wörgl</p>
-  <p>Österreich</p>
+  <h2>Medieninhaber, Herausgeber und für den Inhalt verantwortlich</h2>
+  <p><strong>HOLISTIC LIFE INSTITUT</strong> – Forschungs- und Bildungsverein für die Gesunderhaltung von Menschen und Tieren, Kunst und Kultur sowie dem Schutz unseres Lebensraums</p>
+  <p>Kurzname: HOLISTIC LIFE INSTITUT</p>
+
+  <h2>Vereinssitz</h2>
+  <p>Innsbruck, Österreich</p>
+  <p>Tätigkeitsbereich: Ganz Europa</p>
+
+  <h2>ZVR-Nummer</h2>
+  <p>1406483851</p>
+
+  <h2>Vereinsorgane</h2>
+  <p>Präsident: Peter Steinlechner</p>
 
   <h2>Kontakt</h2>
-  <p>E-Mail: <a href="mailto:novela.steinlechner@gmail.com">novela.steinlechner@gmail.com</a></p>
+  <p>E-Mail: <a href="mailto:info@holistic-life-institut.com">info@holistic-life-institut.com</a></p>
 
-  <h2>Zweck und Grundlegende Richtung der Website (§ 25 Mediengesetz)</h2>
+  <h2>Gemeinnützigkeit</h2>
+  <p>Der Verein ist als gemeinnützig gemäß §§ 34–47 BAO (Bundesabgabenordnung) anerkannt und fördert die Gesundheit von Menschen und Tieren, Bildung und Forschung, Kunst und Kultur sowie die Bewusstseinsbildung für Klima- und Umweltschutz.</p>
+
+  <h2>Projektleitung &amp; Zusammenarbeit</h2>
+  <p>Frauenreferentin Wörgl</p>
+  <p>Novela Steinlechner</p>
+  <p>E-Mail: <a href="mailto:novela.steinlechner@gmail.com">novela.steinlechner@gmail.com</a></p>
+  <p>Telefon: <a href="tel:+4369911815069">+43 699 11815069</a></p>
+
+  <h2>Zweck und grundlegende Richtung der Website (§ 25 Mediengesetz)</h2>
   <p>Frauenkompass Tirol ist ein nicht-kommerzielles, informatives Angebot, das Frauen in Tirol einen Überblick über regionale Beratungs-, Unterstützungs- und Notfallstellen bietet. Die Website verfolgt keine kommerziellen oder parteipolitischen Interessen.</p>
 
-  <h2>Hinweis zur Unternehmereigenschaft</h2>
-  <p>Der Betrieb dieser Website erfolgt derzeit nicht im Rahmen einer gewerblichen Tätigkeit. Angaben wie Firmenbuchnummer, UID-Nummer, zuständige Kammer oder Aufsichtsbehörde entfallen daher.</p>
-
-  <h2>Haftung für Inhalte</h2>
-  <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte — insbesondere der genannten Kontaktdaten externer Beratungsstellen — kann jedoch keine Gewähr übernommen werden. Bitte prüfen Sie wichtige Angaben (z. B. Telefonnummern, Öffnungszeiten) im Zweifel direkt bei der jeweiligen Stelle.</p>
+  <h2>Haftungsausschluss &amp; Hinweis zur Richtigkeit</h2>
+  <p>Alle Inhalte dieser Website wurden nach bestem Wissen und Gewissen sorgfältig recherchiert. Dennoch erfolgen sämtliche Angaben <strong>ohne Gewähr</strong> auf Richtigkeit, Vollständigkeit und Aktualität und können Fehler enthalten. Insbesondere bei Kontaktdaten, Telefonnummern, Öffnungszeiten, Terminen und Angeboten externer Stellen bitten wir, wichtige Informationen im Zweifel direkt bei der jeweiligen Einrichtung zu prüfen. Eine Haftung für Schäden, die aus der Nutzung oder Nichtnutzung der bereitgestellten Informationen entstehen, ist – soweit gesetzlich zulässig – ausgeschlossen.</p>
 
   <h2>Haftung für Links</h2>
   <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte kein Einfluss besteht. Für diese fremden Inhalte kann daher keine Gewähr übernommen werden. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seite verantwortlich.</p>
 
   <h2>Urheberrecht</h2>
-  <p>Die durch die Betreiberin erstellten Inhalte und Werke auf dieser Website unterliegen dem österreichischen Urheberrecht.</p>
+  <p>Die auf dieser Website erstellten Inhalte und Werke unterliegen dem österreichischen Urheberrecht.</p>
 </main>
 
 <footer>
