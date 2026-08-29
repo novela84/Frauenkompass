@@ -21,6 +21,7 @@
     --sans: 'Jost', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
   }
   *{box-sizing:border-box;}
+  html, body{ max-width:100%; overflow-x:hidden; }
   body{
     margin:0;
     font-family:var(--sans);
@@ -28,14 +29,22 @@
     background:var(--cream);
     -webkit-font-smoothing:antialiased;
   }
-  a{color:var(--plum-700);}
+  h1, h2, h3, p, li{ overflow-wrap:break-word; }
+  a{color:var(--plum-700); overflow-wrap:break-word; word-break:break-word;}
   header.site{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
     padding:14px 5vw;
     background:var(--cream);
     border-bottom:1px solid var(--line);
+  }
+  header.site a{white-space:nowrap;}
+  @media (max-width:430px){
+    .brand-name{font-size:1.1rem;}
+    header.site a{font-size:0.82rem;}
   }
   .brand-name{font-family:var(--serif); font-size:1.35rem; letter-spacing:0.04em; color:var(--plum);}
   header.site a{text-decoration:none; font-size:0.9rem; color:var(--plum-700);}
@@ -125,10 +134,15 @@
   <p>Wir freuen uns über dein Interesse an Frauenkompass Tirol. Der Schutz deiner personenbezogenen Daten ist uns wichtig. Nachfolgend informieren wir dich gemäß Art. 13 DSGVO über die Verarbeitung personenbezogener Daten bei der Nutzung dieser Website.</p>
 
   <h2>1. Verantwortlicher</h2>
-  <p>Novela Steinlechner<br>
-  Ladestraße 20d<br>
-  6300 Wörgl, Österreich<br>
-  E-Mail: <a href="mailto:novela.steinlechner@gmail.com">novela.steinlechner@gmail.com</a></p>
+  <p>Verantwortlicher im Sinne der DSGVO ist:</p>
+  <p><strong>HOLISTIC LIFE INSTITUT</strong> – Forschungs- und Bildungsverein für die Gesunderhaltung von Menschen und Tieren, Kunst und Kultur sowie dem Schutz unseres Lebensraums<br>
+  Vereinssitz: Innsbruck, Österreich<br>
+  ZVR-Nummer: 1406483851<br>
+  Vertreten durch: Präsident Peter Steinlechner<br>
+  E-Mail: <a href="mailto:info@holistic-life-institut.com">info@holistic-life-institut.com</a></p>
+  <p>Projektleitung Frauenkompass &amp; Zusammenarbeit: Novela Steinlechner (Frauenreferentin Wörgl)<br>
+  E-Mail: <a href="mailto:novela.steinlechner@gmail.com">novela.steinlechner@gmail.com</a><br>
+  Telefon: <a href="tel:+4369911815069">+43 699 11815069</a></p>
 
   <h2>2. Hosting</h2>
   <p>Diese Website wird über <strong>Cloudflare, Inc.</strong> (Cloudflare Pages) gehostet und ausgeliefert. Beim Aufruf der Website werden automatisch technische Zugriffsdaten (u. a. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, verwendeter Browser) in Server-Logfiles verarbeitet. Dies ist technisch notwendig, um die Website sicher und stabil bereitzustellen (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an einem funktionsfähigen und sicheren Betrieb).</p>
@@ -157,7 +171,7 @@
     <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
     <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
   </ul>
-  <p>Zur Ausübung dieser Rechte wende dich bitte an: <a href="mailto:novela.steinlechner@gmail.com">novela.steinlechner@gmail.com</a></p>
+  <p>Zur Ausübung dieser Rechte wende dich bitte an: <a href="mailto:info@holistic-life-institut.com">info@holistic-life-institut.com</a></p>
 
   <h2>8. Beschwerderecht bei der Aufsichtsbehörde</h2>
   <p>Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung deiner personenbezogenen Daten zu beschweren. In Österreich ist dies die:</p>
